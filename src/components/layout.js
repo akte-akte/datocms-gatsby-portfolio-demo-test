@@ -22,18 +22,25 @@ const TemplateWrapper = ({ children }) => {
               ...GatsbyDatoCmsFaviconMetaTags
             }
           }
-          datoCmsHome {
+          datoCmsHomePage {
             seoMetaTags {
               ...GatsbyDatoCmsSeoMetaTags
             }
-            introTextNode {
+            introNode {
               childMarkdownRemark {
                 html
               }
             }
-            copyright
           }
-          allDatoCmsSocialProfile(sort: { fields: [position], order: ASC }) {
+          allDatoCmsSocialProfile {
+            edges {
+              node {
+                profileType
+                url
+              }
+            }
+          }
+          allDatoCmsMusicProfile {
             edges {
               node {
                 profileType
@@ -43,11 +50,11 @@ const TemplateWrapper = ({ children }) => {
           }
         }
       `}
-      render={data => (
+      render={(data) => (
         <div className={`container ${showMenu ? "is-open" : ""}`}>
           <HelmetDatoCms
             favicon={data.datoCmsSite.faviconMetaTags}
-            seo={data.datoCmsHome.seoMetaTags}
+            seo={data.datoCmsHomePage.seoMetaTags}
           />
           <div className="container__sidebar">
             <div className="sidebar">
@@ -58,7 +65,7 @@ const TemplateWrapper = ({ children }) => {
                 className="sidebar__intro"
                 dangerouslySetInnerHTML={{
                   __html:
-                    data.datoCmsHome.introTextNode.childMarkdownRemark.html
+                    data.datoCmsHomePage.introNode.childMarkdownRemark.html,
                 }}
               />
               <ul className="sidebar__menu">
@@ -67,6 +74,9 @@ const TemplateWrapper = ({ children }) => {
                 </li>
                 <li>
                   <Link to="/about">About</Link>
+                </li>
+                <li>
+                  <Link to="/Contact">Contact</Link>
                 </li>
               </ul>
               <p className="sidebar__social">
@@ -81,9 +91,18 @@ const TemplateWrapper = ({ children }) => {
                   </a>
                 ))}
               </p>
-              <div className="sidebar__copyright">
-                {data.datoCmsHome.copyright}
-              </div>
+              <p className="sidebar__social">
+                {data.allDatoCmsMusicProfile.edges.map(({ node: profile }) => (
+                  <a
+                    key={profile.profileType}
+                    href={profile.url}
+                    target="blank"
+                    className={`social social--${profile.profileType.toLowerCase()}`}
+                  >
+                    {" "}
+                  </a>
+                ))}
+              </p>
             </div>
           </div>
           <div className="container__body">
@@ -91,7 +110,7 @@ const TemplateWrapper = ({ children }) => {
               <div className="mobile-header">
                 <div className="mobile-header__menu">
                   <button
-                    onClick={e => {
+                    onClick={(e) => {
                       e.preventDefault();
                       setShowMenu(!showMenu);
                     }}

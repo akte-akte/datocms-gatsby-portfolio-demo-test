@@ -7,18 +7,18 @@ import Layout from "../components/layout"
 const IndexPage = ({ data }) => (
   <Layout>
     <Masonry className="showcase">
-      {data.allDatoCmsWork.edges.map(({ node: work }) => (
-        <div key={work.id} className="showcase__item">
+      {data.allDatoCmsAlbum.edges.map(({ node: album }) => (
+        <div key={album.id} className="showcase__item">
           <figure className="card">
-            <Link to={`/works/${work.slug}`} className="card__image">
-              <Img fluid={work.coverImage.fluid} />
+            <Link to={`/albums/${album.slug}`} className="card__image">
+              <Img fluid={album.albumArtwork.fluid} />
             </Link>
             <figcaption className="card__caption">
               <h6 className="card__title">
-                <Link to={`/works/${work.slug}`}>{work.title}</Link>
+                <Link to={`/albums/${album.slug}`}>{album.title}</Link>
               </h6>
               <div className="card__description">
-                <p>{work.excerpt}</p>
+                <p>{album.description}</p>
               </div>
             </figcaption>
           </figure>
@@ -32,14 +32,14 @@ export default IndexPage
 
 export const query = graphql`
   query IndexQuery {
-    allDatoCmsWork(sort: { fields: [position], order: ASC }) {
+    allDatoCmsAlbum(sort: { fields: [id], order: ASC }) {
       edges {
         node {
           id
-          title
+          albumTitle
           slug
-          excerpt
-          coverImage {
+          description
+          albumArtwork {
             fluid(maxWidth: 450, imgixParams: { fm: "jpg", auto: "compress" }) {
               ...GatsbyDatoCmsSizes
             }

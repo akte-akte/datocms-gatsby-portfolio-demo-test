@@ -7,7 +7,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     graphql(`
       {
-        allDatoCmsWork {
+        allDatoCmsAlbum {
           edges {
             node {
               slug
@@ -16,12 +16,12 @@ exports.createPages = ({ graphql, actions }) => {
         }
       }
     `).then(result => {
-      result.data.allDatoCmsWork.edges.map(({ node: work }) => {
+      result.data.allDatoCmsAlbum.edges.map(({ node: album }) => {
         createPage({
-          path: `works/${work.slug}`,
-          component: path.resolve(`./src/templates/work.js`),
+          path: `albums/${album.slug}`,
+          component: path.resolve(`./src/templates/album.js`),
           context: {
-            slug: work.slug,
+            slug: album.slug,
           },
         })
       })
