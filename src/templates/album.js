@@ -4,7 +4,7 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
-import {Card, Grid, CardContent, CardMedia, Typography, IconButton} from '@material-ui/core';
+import {Button, Card, Grid, CardContent, CardMedia, Typography, IconButton} from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 export default ({ data }) => (
@@ -21,6 +21,18 @@ export default ({ data }) => (
             __html: data.album.descriptionNode.childMarkdownRemark.html,
           }}
         />
+
+<Button variant="contained" color="primary" class="snipcart-add-item"
+  data-item-id={data.album.id}
+  data-item-price={data.album.price}
+  data-item-url={data.album.albumArtwork}
+  data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh."
+  data-item-image="/assets/images/starry-night.jpg"
+  data-item-name={data.album.name}
+  data-item-custom1-name="purchase option"
+  data-item-custom1-options="CD[+100.00]|Download[+300.00]">
+  Add to cart
+</Button>
 
         <div className="sheet__gallery">
           <Img fluid={data.album.albumArtwork.fluid} />
