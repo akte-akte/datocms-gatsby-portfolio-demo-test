@@ -10,6 +10,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundImage: 'url(https://www.datocms-assets.com/31212/1595139299-img0854.jpg)',
     backgroundSize: 'cover', 
     height: '300px',
+    color: '#fff',
   },
 }));
 
@@ -21,9 +22,9 @@ const HeroBanner = () => {
   return (
       <Paper className={classes.hero}  elevation={0}>
         <Container>
-          <Typography variant="h2" component="h1" align="center">
-            Something
-          </Typography>
+         {/*  <Typography variant="h2" component="h1" align="center">
+            Kieran Roberts
+          </Typography> */}
         </Container>
       </Paper>
   );

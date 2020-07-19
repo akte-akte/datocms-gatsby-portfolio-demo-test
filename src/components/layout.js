@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Link } from "gatsby";
 import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
-
+import HeroBanner from "./heroBanner.js";
 import "../styles/index.sass";
 
 const TemplateWrapper = ({ children }) => {
@@ -26,7 +26,7 @@ const TemplateWrapper = ({ children }) => {
             seoMetaTags {
               ...GatsbyDatoCmsSeoMetaTags
             }
-            callToActionNode {
+            introNode {
               childMarkdownRemark {
                 html
               }
@@ -51,79 +51,88 @@ const TemplateWrapper = ({ children }) => {
         }
       `}
       render={(data) => (
-        <div className={`container ${showMenu ? "is-open" : ""}`}>
-          <HelmetDatoCms
-            favicon={data.datoCmsSite.faviconMetaTags}
-            seo={data.datoCmsHomePage.seoMetaTags}
-          />
-          <div className="container__sidebar">
-            <div className="sidebar">
-              <h6 className="sidebar__title">
-                <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
-              </h6>
-              <div
-                className="sidebar__callToAction"
-                dangerouslySetInnerHTML={{
-                  __html:
-                    data.datoCmsHomePage.callToActionNode.childMarkdownRemark.html,
-                }}
-              />
-              <nav>
-              <ul className="sidebar__menu">
-                <li>
-                  <Link to="/">Home</Link>
-                </li>
-                <li>
-                  <Link to="/about">About</Link>
-                </li>
-                <li>
-                  <Link to="/Contact">Contact</Link>
-                </li>
-              </ul>
-              </nav>
-              <p className="sidebar__social">
-                {data.allDatoCmsSocialProfile.edges.map(({ node: profile }) => (
-                  <a
-                    key={profile.profileType}
-                    href={profile.url}
-                    target="blank"
-                    className={`social social--${profile.profileType.toLowerCase()}`}
-                  >
-                    {" "}
-                  </a>
-                ))}
-              </p>
-              <p className="sidebar__social">
-                {data.allDatoCmsMusicProfile.edges.map(({ node: profile }) => (
-                  <a
-                    key={profile.profileType}
-                    href={profile.url}
-                    target="blank"
-                    className={`social social--${profile.profileType.toLowerCase()}`}
-                  >
-                    {" "}
-                  </a>
-                ))}
-              </p>
-            </div>
-          </div>
-          <div className="container__body">
-            <div className="container__mobile-header">
-              <div className="mobile-header">
-                <div className="mobile-header__menu">
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowMenu(!showMenu);
-                    }}
-                  />
-                </div>
-                <div className="mobile-header__logo">
+        <div>
+         <HeroBanner />
+          <div className={`container ${showMenu ? "is-open" : ""}`}>
+            <HelmetDatoCms
+              favicon={data.datoCmsSite.faviconMetaTags}
+              seo={data.datoCmsHomePage.seoMetaTags}
+            />
+
+            <div className="container__sidebar">
+              <div className="sidebar">
+                <h6 className="sidebar__title">
                   <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
-                </div>
+                </h6>
+                <div
+                  className="sidebar__intro"
+                  dangerouslySetInnerHTML={{
+                    __html:
+                      data.datoCmsHomePage.introNode.childMarkdownRemark
+                        .html,
+                  }}
+                />
+                <nav>
+                  <ul className="sidebar__menu">
+                    <li>
+                      <Link to="/">Home</Link>
+                    </li>
+                    <li>
+                      <Link to="/about">About</Link>
+                    </li>
+                    <li>
+                      <Link to="/Contact">Contact</Link>
+                    </li>
+                  </ul>
+                </nav>
+                <p className="sidebar__social">
+                  {data.allDatoCmsSocialProfile.edges.map(
+                    ({ node: profile }) => (
+                      <a
+                        key={profile.profileType}
+                        href={profile.url}
+                        target="blank"
+                        className={`social social--${profile.profileType.toLowerCase()}`}
+                      >
+                        {" "}
+                      </a>
+                    )
+                  )}
+                </p>
+                <p className="sidebar__social">
+                  {data.allDatoCmsMusicProfile.edges.map(
+                    ({ node: profile }) => (
+                      <a
+                        key={profile.profileType}
+                        href={profile.url}
+                        target="blank"
+                        className={`social social--${profile.profileType.toLowerCase()}`}
+                      >
+                        {" "}
+                      </a>
+                    )
+                  )}
+                </p>
               </div>
             </div>
-            {children}
+            <div className="container__body">
+              <div className="container__mobile-header">
+                <div className="mobile-header">
+                  <div className="mobile-header__menu">
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setShowMenu(!showMenu);
+                      }}
+                    />
+                  </div>
+                  <div className="mobile-header__logo">
+                    <Link to="/">{data.datoCmsSite.globalSeo.siteName}</Link>
+                  </div>
+                </div>
+              </div>
+              {children}
+            </div>
           </div>
         </div>
       )}
