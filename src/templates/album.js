@@ -1,5 +1,4 @@
 import React from 'react'
-// import Slider from 'react-slick'
 import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
@@ -22,17 +21,21 @@ export default ({ data }) => (
           }}
         />
 
-<Button variant="contained" color="primary" class="snipcart-add-item"
-  data-item-id={data.album.id}
-  data-item-price={data.album.price}
-  data-item-url={data.album.albumArtwork}
-  data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh."
-  data-item-image="/assets/images/starry-night.jpg"
-  data-item-name={data.album.name}
-  data-item-custom1-name="purchase option"
-  data-item-custom1-options="CD[+100.00]|Download[+300.00]">
-  Add to cart
-</Button>
+        <Button
+          variant="contained"
+          color="primary"
+          class="snipcart-add-item"
+          data-item-id={data.album.id}
+          data-item-price={data.album.price}
+          data-item-url={data.album.albumArtwork}
+          data-item-description="High-quality replica of The Starry Night by the Dutch post-impressionist painter Vincent van Gogh."
+          data-item-image="/assets/images/starry-night.jpg"
+          data-item-name={data.album.name}
+          data-item-custom1-name="purchase option"
+          data-item-custom1-options="CD[+100.00]|Download[+300.00]"
+        >
+          Add to cart
+        </Button>
 
         <div className="sheet__gallery">
           <Img fluid={data.album.albumArtwork.fluid} />
@@ -44,25 +47,29 @@ export default ({ data }) => (
                     <Grid container spacing={3}>
                       <Grid item xs={3}>
                         <CardMedia
-                      component="img"
-                      image={track.artwork.url}
-                      title={track.title}
-                      height="140"
-                    />
-                    </Grid>
-                    <Grid item>
-                    <div>
-                      <CardContent>
-                        <Typography variant="h5" component="h2">{track.title}</Typography>
-                        <Typography variant="body2" component="p">${track.price}AUD</Typography>
-                      </CardContent>
-                      <div>
-                        <IconButton aria-label="play/pause">
-                          <PlayArrowIcon />
-                        </IconButton>
-                      </div>
-                    </div>
-                    </Grid>
+                          component="img"
+                          image={track.artwork.url}
+                          title={track.title}
+                          height="140"
+                        />
+                      </Grid>
+                      <Grid item>
+                        <div>
+                          <CardContent>
+                            <Typography variant="h5" component="h2">
+                              {track.title}
+                            </Typography>
+                            <Typography variant="body2" component="p">
+                              ${track.price}AUD
+                            </Typography>
+                          </CardContent>
+                          <div>
+                            <IconButton aria-label="play/pause">
+                              <PlayArrowIcon />
+                            </IconButton>
+                          </div>
+                        </div>
+                      </Grid>
                     </Grid>
                   </Card>
                 </div>
