@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Paper, Typography, Container} from '@material-ui/core';
+import { Paper, Container} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -20,11 +20,9 @@ const HeroBanner = () => {
   const classes = useStyles();
 
   return (
-      <Paper className={classes.hero}  elevation={0}>
+      <Paper className={classes.hero} elevation={0} square gutterBottom={true}>
         <Container>
-         {/*  <Typography variant="h2" component="h1" align="center">
-            Kieran Roberts
-          </Typography> */}
+         {" "}
         </Container>
       </Paper>
   );
