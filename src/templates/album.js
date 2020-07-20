@@ -3,10 +3,23 @@ import { HelmetDatoCms } from 'gatsby-source-datocms'
 import Img from 'gatsby-image'
 import { graphql } from 'gatsby'
 import Layout from "../components/layout"
-import {Button, Card, Grid, CardContent, CardMedia, Typography, IconButton} from '@material-ui/core';
+import { Button, Card, Grid, CardContent, CardMedia, Typography, IconButton } from '@material-ui/core';
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import { makeStyles } from '@material-ui/core/styles';
 
-export default ({ data }) => (
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  contentPadding: {
+    margin: '20px 0px',
+  },
+}));
+
+export default ({ data }) => {
+  const classes = useStyles();
+
+  return (
   <Layout>
     <article className="sheet">
       <HelmetDatoCms seo={data.album.seoMetaTags} />
@@ -39,18 +52,18 @@ export default ({ data }) => (
 
         <div className="sheet__gallery">
           <Img fluid={data.album.albumArtwork.fluid} />
-          <Grid container spacing={2}>
+          <Grid container spacing={3}>
             <Grid item xs={12}>
               {data.album.tracks.map((track, id) => (
                 <div key={track.id}>
-                  <Card>
+                  <Card className={classes.contentPadding} square >
                     <Grid container spacing={3}>
                       <Grid item xs={3}>
                         <CardMedia
                           component="img"
                           image={track.artwork.url}
                           title={track.title}
-                          height="140"
+                          maxHeight="140"
                         />
                       </Grid>
                       <Grid item>
@@ -60,11 +73,11 @@ export default ({ data }) => (
                               {track.title}
                             </Typography>
                             <Typography variant="body2" component="p">
-                              ${track.price}AUD
+                              ${track.price.toFixed(2)}AUD
                             </Typography>
                           </CardContent>
                           <div>
-                            <IconButton aria-label="play/pause">
+                            <IconButton aria-label="play/pause" color="secondary">
                               <PlayArrowIcon />
                             </IconButton>
                           </div>
@@ -80,7 +93,7 @@ export default ({ data }) => (
       </div>
     </article>
   </Layout>
-);
+)};
 
 export const query = graphql`
   query AlbumQuery($slug: String!) {
@@ -105,6 +118,7 @@ export const query = graphql`
         id
         title
         price
+        trackNumber
         artwork {
           url
           sizes(maxWidth: 150, imgixParams: { fm: "jpg", auto: "compress" }) {
