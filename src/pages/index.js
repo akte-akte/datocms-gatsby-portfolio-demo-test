@@ -82,7 +82,7 @@ export const query = graphql`
         }
       }
     }
-    allDatoCmsCta {
+    allDatoCmsCta (sort: { fields: [id], order: ASC }) {
       edges {
         node {
           id
