@@ -8,9 +8,6 @@ import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   contentPadding: {
     margin: '20px 0px',
   },
@@ -42,7 +39,7 @@ export default ({ data }) => {
           data-item-price={data.album.price.toFixed(2)}
           data-item-url={data.album.albumArtwork}
           data-item-description="Album description."
-          data-item-image={`/albums/${album.slug}`}
+          data-item-image={`/albums/${data.album.slug}`}
           data-item-name={data.album.name}
           data-item-custom1-name="purchase option"
           data-item-custom1-options="CD[+100.00]|Download[+300.00]"
@@ -103,6 +100,7 @@ export const query = graphql`
       }
       albumTitle
       id
+      price
       descriptionNode {
         childMarkdownRemark {
           html

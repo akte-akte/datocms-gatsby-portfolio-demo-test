@@ -1,11 +1,9 @@
 import React from 'react';
+import { graphql } from 'gatsby'
 import { makeStyles } from '@material-ui/core/styles';
 import { Paper, Container} from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    flexGrow: 1,
-  },
   hero: {
     backgroundImage: 'url(https://www.datocms-assets.com/31212/1595139299-img0854.jpg)',
     backgroundSize: 'cover', 
