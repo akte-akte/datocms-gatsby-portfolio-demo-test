@@ -20,7 +20,7 @@ const HeroBanner = () => {
   const classes = useStyles();
 
   return (
-      <Paper className={classes.hero} elevation={0} square gutterBottom={true}>
+      <Paper className={classes.hero} elevation={0} square>
         <Container>
          {" "}
         </Container>
