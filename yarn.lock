@@ -6584,6 +6584,11 @@ gatsby-plugin-sass@^2.1.24:
     "@babel/runtime" "^7.10.2"
     sass-loader "^7.3.1"
 
+gatsby-plugin-snipcartv3@^2.3.2:
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-snipcartv3/-/gatsby-plugin-snipcartv3-2.3.2.tgz#7afa699ab620a3871b5063225841cf48e084cf9b"
+  integrity sha512-FzGBgCOHs0Um1sfZhOhMVerRXZ1I5I4kHjtHeYcqB5FuJTYB9r6aBJOD99yhgyikOWQ/i3a0BLzj5rhZVWCvcg==
+
 gatsby-plugin-typescript@^2.4.6:
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-typescript/-/gatsby-plugin-typescript-2.4.6.tgz#8c1c53510678978303ce9cd489e69f6696409bd8"
