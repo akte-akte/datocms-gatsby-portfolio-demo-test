@@ -60,7 +60,7 @@ export default ({ data }) => {
                   <div key={track.id}>
                     <Card className={classes.contentPadding} square>
                       <Grid container spacing={3}>
-                        <Grid item xs={3}>
+                        <Grid item xs={12} sm={6} md={3}>
                           <CardMedia
                             component="img"
                             image={track.artwork.url}
@@ -68,7 +68,7 @@ export default ({ data }) => {
                             maxHeight="140"
                           />
                         </Grid>
-                        <Grid item xs={9}>
+                        <Grid item xs={12} sm={6} md={9}>
                             <CardContent>
                               <Typography variant="h5" component="h2">
                                 {track.title}
