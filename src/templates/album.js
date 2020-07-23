@@ -17,80 +17,92 @@ export default ({ data }) => {
   const classes = useStyles();
 
   return (
-  <Layout>
-    <article className="sheet">
-      <HelmetDatoCms seo={data.album.seoMetaTags} />
-      <div className="sheet__inner">
-        <h1 className="sheet__albumTitle">{data.album.albumTitle}</h1>
-        <p className="sheet__lead">About this album</p>
+    <Layout>
+      <article className="sheet">
+        <HelmetDatoCms seo={data.album.seoMetaTags} />
+        <div className="sheet__inner">
+          <h1 className="sheet__albumTitle">{data.album.albumTitle}</h1>
+          <p className="sheet__lead">About this album</p>
 
-        <div
-          className="sheet__body"
-          dangerouslySetInnerHTML={{
-            __html: data.album.descriptionNode.childMarkdownRemark.html,
-          }}
-        />
+          <div
+            className="sheet__body"
+            dangerouslySetInnerHTML={{
+              __html: data.album.descriptionNode.childMarkdownRemark.html,
+            }}
+          />
 
-        <Button
-          variant="contained"
-          color="primary"
-          class="snipcart-add-item"
-          data-item-id={data.album.id}
-          data-item-price={data.album.price.toFixed(2)}
-          data-item-url={data.album.albumArtwork}
-          data-item-description="Album description."
-          data-item-image={`/albums/${data.album.slug}`}
-          data-item-name={data.album.name}
-          data-item-custom1-name="purchase option"
-          data-item-custom1-options="CD[+100.00]|Download[+300.00]"
-        >
-          Add to cart
-        </Button>
+          <Button
+            variant="contained"
+            color="primary"
+            class="snipcart-add-item"
+            data-item-id={data.album.id}
+            data-item-price={data.album.price.toFixed(2)}
+            data-item-url={`https://practical-hugle-a440b6.netlify.app/albums/${data.album.slug}`}
+            data-item-description="Album description."
+            data-item-image={data.albumArtwork}
+            data-item-name={data.album.name}
+            data-item-custom1-name="Purchase option"
+            data-item-custom1-options="CD[+10.00]|Download"
+          >
+            Add to cart
+          </Button>
 
-        <div className="sheet__gallery">
-          <Img fluid={data.album.albumArtwork.fluid} />
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              {data.album.tracks.map((track, id) => (
-                <div key={track.id}>
-                  <Card className={classes.contentPadding} square >
-                    <Grid container spacing={3}>
-                      <Grid item xs={3}>
-                        <CardMedia
-                          component="img"
-                          image={track.artwork.url}
-                          title={track.title}
-                          maxHeight="140"
-                        />
-                      </Grid>
-                      <Grid item>
-                        <div>
-                          <CardContent>
-                            <Typography variant="h5" component="h2">
-                              {track.title}
-                            </Typography>
-                            <Typography variant="body2" component="p">
-                              ${track.price.toFixed(2)}AUD
-                            </Typography>
-                          </CardContent>
+          <div className="sheet__gallery">
+            <Img fluid={data.album.albumArtwork.fluid} />
+            <Grid container spacing={3}>
+              <Grid item xs={12}>
+                {data.album.tracks.map((track, id) => (
+                  <div key={track.id}>
+                    <Card className={classes.contentPadding} square>
+                      <Grid container spacing={3}>
+                        <Grid item xs={3}>
+                          <CardMedia
+                            component="img"
+                            image={track.artwork.url}
+                            title={track.title}
+                            maxHeight="140"
+                          />
+                        </Grid>
+                        <Grid item>
                           <div>
-                            <IconButton aria-label="play/pause" color="secondary">
-                              <PlayArrowIcon />
-                            </IconButton>
+                            <CardContent>
+                              <Typography variant="h5" component="h2">
+                                {track.title}
+                              </Typography>
+                              <Typography variant="body2" component="p">
+                                ${track.price.toFixed(2)}AUD
+                              </Typography>
+                            </CardContent>
+                            <div>
+                              <IconButton
+                                aria-label="play/pause"
+                                color="primary"
+                              >
+                                <PlayArrowIcon />
+                              </IconButton>
+                              <Button
+                                variant="contained"
+                                color="primary"
+                                class="snipcart-add-item"
+                                data-item-file-guid={track.cardGuid}
+                              >
+                                Buy track
+                              </Button>
+                            </div>
                           </div>
-                        </div>
+                        </Grid>
                       </Grid>
-                    </Grid>
-                  </Card>
-                </div>
-              ))}
+                    </Card>
+                  </div>
+                ))}
+              </Grid>
             </Grid>
-          </Grid>
+          </div>
         </div>
-      </div>
-    </article>
-  </Layout>
-)};
+      </article>
+    </Layout>
+  );
+};
 
 export const query = graphql`
   query AlbumQuery($slug: String!) {
@@ -101,6 +113,7 @@ export const query = graphql`
       albumTitle
       id
       price
+      slug
       descriptionNode {
         childMarkdownRemark {
           html
@@ -116,6 +129,7 @@ export const query = graphql`
         id
         title
         price
+        cartGuid
         trackNumber
         artwork {
           url
