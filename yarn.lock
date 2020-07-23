@@ -3748,7 +3748,7 @@ class-utils@^0.3.5:
     isobject "^3.0.0"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.5, classnames@^2.2.6:
   version "2.2.6"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
@@ -9388,6 +9388,13 @@ masonry-layout@^4.2.0:
   dependencies:
     get-size "^2.0.2"
     outlayer "^2.1.0"
+
+material-ui-audio-player@^1.1.9:
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/material-ui-audio-player/-/material-ui-audio-player-1.1.9.tgz#a0bf7a946b8b1ac365c9bee3e207ea6c58890181"
+  integrity sha512-oDPmsJHWyOnoDnEfsdiv3vtMf51zIewVcZZ0Hq1sLgI+fszsfAQv0nAMJc2pf2Qh9Np8iJjVHFK4hIkB8GOygg==
+  dependencies:
+    classnames "^2.2.6"
 
 md5-file@^3.2.3:
   version "3.2.3"

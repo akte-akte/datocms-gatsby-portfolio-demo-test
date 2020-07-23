@@ -7,6 +7,11 @@ import { Button, Card, Grid, CardContent, CardMedia, Typography, IconButton } fr
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { createMuiTheme, ThemeProvider } from '@material-ui/core';
+import AudioPlayer from 'material-ui-audio-player';
+ 
+const muiTheme = createMuiTheme({});
+
 const useStyles = makeStyles((theme) => ({
   contentPadding: {
     margin: '20px 0px',
@@ -63,8 +68,7 @@ export default ({ data }) => {
                             maxHeight="140"
                           />
                         </Grid>
-                        <Grid item>
-                          <div>
+                        <Grid item xs={9}>
                             <CardContent>
                               <Typography variant="h5" component="h2">
                                 {track.title}
@@ -72,24 +76,28 @@ export default ({ data }) => {
                               <Typography variant="body2" component="p">
                                 ${track.price.toFixed(2)}AUD
                               </Typography>
-                            </CardContent>
-                            <div>
-                              <IconButton
-                                aria-label="play/pause"
-                                color="primary"
-                              >
-                                <PlayArrowIcon />
-                              </IconButton>
+                              <ThemeProvider theme={muiTheme}>
+                               <AudioPlayer src={track.trackSample.url}
+                                elevation={0}
+                                width="100%"
+                                variation="default"
+                                spacing={3}
+                                download={false}
+                                autoplay={false}
+                                order="standart"
+                                preload="auto"
+                                loop={false} />
+                            </ThemeProvider>
+      
                               <Button
                                 variant="contained"
                                 color="primary"
                                 class="snipcart-add-item"
-                                data-item-file-guid={track.cardGuid}
+                                data-item-file-guid={track.cartGuid}
                               >
-                                Buy track
+                                Add to cart
                               </Button>
-                            </div>
-                          </div>
+                            </CardContent>
                         </Grid>
                       </Grid>
                     </Card>
@@ -136,6 +144,9 @@ export const query = graphql`
           sizes(maxWidth: 150, imgixParams: { fm: "jpg", auto: "compress" }) {
             ...GatsbyDatoCmsSizes
           }
+        }
+        trackSample {
+          url
         }
       }
     }
