@@ -14,6 +14,13 @@ exports.createPages = ({ graphql, actions }) => {
             }
           }
         }
+        allDatoCmsTrack {
+          edges {
+            node {
+              slug
+            }
+          }
+        }
       }
     `).then(result => {
       result.data.allDatoCmsAlbum.edges.map(({ node: album }) => {
@@ -22,6 +29,15 @@ exports.createPages = ({ graphql, actions }) => {
           component: path.resolve(`./src/templates/album.js`),
           context: {
             slug: album.slug,
+          },
+        })
+      })
+      result.data.allDatoCmsTrack.edges.map(({ node: track }) => {
+        createPage({
+          path: `tracks/${track.slug}`,
+          component: path.resolve(`./src/templates/track.js`),
+          context: {
+            slug: track.slug,
           },
         })
       })
