@@ -23,7 +23,7 @@ export default ({ data }) => {
         <HelmetDatoCms seo={data.album.seoMetaTags} />
         <div className="sheet__inner">
           <h1 className="sheet__albumTitle">{data.album.albumTitle}</h1>
-          <p className="sheet__lead">About this album</p>
+            <p className="sheet__lead">{data.album.lead}</p>
           <div
             className="sheet__body"
             dangerouslySetInnerHTML={{
@@ -38,13 +38,13 @@ export default ({ data }) => {
               <Card>
               <CardActions>
               <Button
-                variant="default"
+                variant="contained"
                 color="primary"
                 className="snipcart-add-item"
                 data-item-id={data.album.id}
                 data-item-price={data.album.price.toFixed(2)}
                 data-item-url={`https://practical-hugle-a440b6.netlify.app/albums/${data.album.slug}`}
-                data-item-description="Album description."
+                data-item-description={data.album.description}
                 data-item-image={data.albumArtwork}
                 data-item-name={data.album.name}
                 data-item-custom1-name="Purchase option"
@@ -54,8 +54,7 @@ export default ({ data }) => {
               </Button>
               </CardActions>
               <CardContent>
-              <Typography component="h2" variant="h5">Track list</Typography>
-              <ol className={classes.orderedList}>
+              <ol className={classes.orderedList} color="textSecondary">
                 {data.album.tracks.map((track) => (
                   <Typography key={track.id} component="li" variant="body1">
                     <Link to={`/tracks/${track.slug}`}>{track.title}</Link>
@@ -83,6 +82,7 @@ export const query = graphql`
       id
       price
       slug
+      lead
       descriptionNode {
         childMarkdownRemark {
           html

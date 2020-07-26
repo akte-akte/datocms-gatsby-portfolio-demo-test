@@ -71,7 +71,7 @@ export default ({ data }) => {
   return (
     <Layout>
       <article className="sheet">
-      <HelmetDatoCms seo={data.track.seoMetaTags} />
+        <HelmetDatoCms seo={data.track.seoMetaTags} />
         <div className="sheet__inner">
           <h1 className="sheet__title">{data.track.title}</h1>
           <Grid container spacing={3}>
@@ -90,14 +90,11 @@ export default ({ data }) => {
                     <CardContent>
                       <Grid container>
                         <Grid item xs={12} sm={6}>
-                          <Typography variant="h5" component="h2">
-                            {data.track.title}
+                          <Typography variant="body2" component="p" color="textSecondary">
+                            Download only ${data.track.price.toFixed(2)}AUD
                           </Typography>
                         </Grid>
                         <Grid item xs={12} sm={6}>
-                          <Typography variant="body2" component="p">
-                            ${data.track.price.toFixed(2)}AUD
-                          </Typography>
                           <Button
                             variant="contained"
                             color="primary"
@@ -133,6 +130,9 @@ export default ({ data }) => {
               </Card>
             </Grid>
           </Grid>
+          <Typography variant="body2" style={{ whiteSpace: "pre-line" }}>
+            {data.track.description}
+          </Typography>
         </div>
       </article>
     </Layout>
@@ -141,7 +141,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query TrackQuery($slug: String!) {
-    track: datoCmsTrack(slug: { eq: $slug })  {
+    track: datoCmsTrack(slug: { eq: $slug }) {
       seoMetaTags {
         ...GatsbyDatoCmsSeoMetaTags
       }
@@ -150,11 +150,7 @@ export const query = graphql`
       price
       cartGuid
       trackNumber
-      descriptionNode {
-        childMarkdownRemark {
-          html
-        }
-      }
+      description
       artwork {
         url
         sizes(maxWidth: 150, imgixParams: { fm: "jpg", auto: "compress" }) {
