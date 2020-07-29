@@ -6584,6 +6584,13 @@ gatsby-plugin-sass@^2.1.24:
     "@babel/runtime" "^7.10.2"
     sass-loader "^7.3.1"
 
+gatsby-plugin-snipcart-advanced@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-snipcart-advanced/-/gatsby-plugin-snipcart-advanced-1.0.0.tgz#55e1745f42217ee73a2cf0697153bf028c8cc0a8"
+  integrity sha512-paYZxBxlo5n4IW2OlO3b135NvmvadqJo61QV/EhnTLSAn+N/qTDabJoZeOzohJzJJJU/5D40QjSm203PSupmng==
+  dependencies:
+    "@babel/runtime" "^7.9.2"
+
 gatsby-plugin-snipcartv3@^2.3.2:
   version "2.3.2"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-snipcartv3/-/gatsby-plugin-snipcartv3-2.3.2.tgz#7afa699ab620a3871b5063225841cf48e084cf9b"

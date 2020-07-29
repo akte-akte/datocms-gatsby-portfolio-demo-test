@@ -16,11 +16,17 @@ module.exports = {
       },
     },
     {
-      resolve: 'gatsby-plugin-snipcartv3',
+      resolve: 'gatsby-plugin-snipcart-advanced',
       options: {
-        apiKey: process.env.GATSBY_SNIPCART_APIKEY,
-        js: 'https://cdn.snipcart.com/themes/v3.0.18/default/snipcart.js',
-        styles: 'https://cdn.snipcart.com/themes/v3.0.18/default/snipcart.css',
+        apiKey: process.env.GATSBY_SNIPCART_API_KEY,
+        version: '3.0.15',
+        defaultLang: 'en',
+        currency: 'aud',
+        openCartOnAdd: false,
+        innerHTML: `
+        <billing section="bottom">
+            <!-- Customization goes here -->
+        </billing>`,
       }
     },
     {
