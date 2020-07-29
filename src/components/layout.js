@@ -6,9 +6,27 @@ import { Link } from "gatsby";
 import { StaticQuery, graphql } from "gatsby";
 import { HelmetDatoCms } from "gatsby-source-datocms";
 import NavBar from "./navBar";
+import { makeStyles } from '@material-ui/core/styles';
+
+
 import "../styles/index.sass";
 
+const drawerWidth = 240;
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  container: {
+    //flexGrow: 1,
+    [theme.breakpoints.up('sm')]: {
+      width: `calc(100% - ${drawerWidth}px)`,
+    },
+  },
+}));
+
 const TemplateWrapper = ({ children }) => {
+  const classes = useStyles();
   const [showMenu, setShowMenu] = useState(false);
   return (
     <StaticQuery
@@ -51,7 +69,7 @@ const TemplateWrapper = ({ children }) => {
         }
       `}
       render={(data) => (
-        <div>
+        <div className={classes.content}>
           <NavBar/>
           <div className={`container ${showMenu ? "is-open" : ""}`}>
             <HelmetDatoCms
