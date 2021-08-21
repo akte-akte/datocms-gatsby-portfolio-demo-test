@@ -1,18 +1,9 @@
-# [abandoned] Gatsby Portfolio Website
+# [abandoned] Gatsby + Data + SnipCart
 
-> This works but not fit-for-purpose, here for reference only
+> This project is an early prototype, functional, but is not fit-for-purpose, here for reference only
 
-This repo contains a static website written with [GatsbyJS](https://www.gatsbyjs.org/), integrated with content coming from [DatoCMS](https://www.datocms.com).
+This repo contains a static website written with [GatsbyJS](https://www.gatsbyjs.org/), integrated with content coming from [DatoCMS](https://www.datocms.com) and building a cart at (https://snipcart.com/)
 
-![Preview](preview.png)
-
-[See the live demo](https://demo-datocms-gatsby.netlify.com/)
-
-If you want to use try this out yourself, you first need to set up a project on DatoCMS which will host your data.
-
-You can [sign up for a free account](https://dashboard.datocms.com/signup) and then you can simply click this button:
-
-[![Deploy with DatoCMS](https://dashboard.datocms.com/deploy/button.svg)](https://dashboard.datocms.com/projects/new-from-template/static-website/gatsby-portfolio)
 
 ## Repo usage
 
