@@ -1,6 +1,6 @@
-# [abandoned] Gatsby + Data + SnipCart
+# [abandoned] Gatsby + DatoCMS + SnipCart
 
-> This project is an early prototype, functional, but is not fit-for-purpose, here for reference only
+>  ℹ️ This project is an early prototype, functional, but is not fit-for-purpose, here for reference only
 
 This repo contains a static website written with [GatsbyJS](https://www.gatsbyjs.org/), integrated with content coming from [DatoCMS](https://www.datocms.com) and building a cart at (https://snipcart.com/)
 
